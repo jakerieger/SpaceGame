@@ -79,11 +79,14 @@
     <ClInclude Include="Bloom.h">
       <Filter>Framework</Filter>
     </ClInclude>
-    <ClInclude Include="FXAA.h">
+    <ClInclude Include="FXAAPostProcess.h">
       <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="DemandCreate.h">
       <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="AntiAliasing.h">
+      <Filter>Framework</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -139,7 +142,10 @@
     <ClCompile Include="Bloom.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
-    <ClCompile Include="FXAA.cpp">
+    <ClCompile Include="FXAAPostProcess.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="AntiAliasing.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
   </ItemGroup>

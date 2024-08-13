@@ -10,6 +10,7 @@
 #include <Model.h>
 #include <PostProcess.h>
 
+#include "AntiAliasing.h"
 #include "Bloom.h"
 #include "Camera.h"
 #include "Environment.h"
@@ -94,6 +95,7 @@ private:
     Unique<DirectX::ToneMapPostProcess> m_ToneMap;
     Unique<Environment> m_Environment;
     Unique<Bloom> m_Bloom;
+    Unique<AntiAliasing> m_AntiAliasing;
 
     // UI resource
     Unique<HUD> m_HUD;

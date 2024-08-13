@@ -121,6 +121,12 @@ void Game::Render() {
         }
         m_DeviceResources->PIXEndEvent();
 
+        m_DeviceResources->PIXBeginEvent(L"AntiAliasing(FXAA)");
+        {
+            m_AntiAliasing->Process(context, m_Bloom->GetProcessedScene());
+        }
+        m_DeviceResources->PIXEndEvent();
+
         m_DeviceResources->PIXBeginEvent(L"Tonemap");
         {
             // TODO: Convert this to a class like Bloom
@@ -150,7 +156,7 @@ void Game::ProcessTonemap(ID3D11DeviceContext* context) {
     const auto renderTarget = m_DeviceResources->GetRenderTargetView();
     context->OMSetRenderTargets(1, &renderTarget, None);
 
-    m_ToneMap->SetHDRSourceTexture(m_Bloom->GetProcessedScene());
+    m_ToneMap->SetHDRSourceTexture(m_AntiAliasing->GetProcessedScene());
     m_ToneMap->Process(context);
 }
 
@@ -255,7 +261,8 @@ void Game::CreateDeviceDependentResources() {
         blendState->Release();
     }
 
-    m_Bloom = std::make_unique<Bloom>(DXGI_FORMAT_R16G16B16A16_FLOAT, device);
+    m_Bloom        = std::make_unique<Bloom>(DXGI_FORMAT_R16G16B16A16_FLOAT, device);
+    m_AntiAliasing = std::make_unique<AntiAliasing>(DXGI_FORMAT_R16G16B16A16_FLOAT, device);
 
     m_Environment = std::make_unique<Environment>(device,
                                                   L"Assets/Textures/LocalStarDiffuseHDR.dds",
@@ -305,6 +312,7 @@ void Game::CreateWindowSizeDependentResources() {
 
     m_HdrScene->SetWindow(m_DeviceResources->GetOutputSize());
     m_Bloom->SetWindow(m_DeviceResources->GetOutputSize());
+    m_AntiAliasing->SetWindow(m_DeviceResources->GetOutputSize());
 
     auto swapChain = m_DeviceResources->GetSwapChain();
     m_HUD          = std::make_unique<HUD>(swapChain);
@@ -328,6 +336,7 @@ void Game::OnDeviceLost() {
     m_HdrScene->ReleaseDevice();
     m_ToneMap.reset();
     m_Bloom.reset();
+    m_AntiAliasing.reset();
     m_HUD.reset();
 }
 

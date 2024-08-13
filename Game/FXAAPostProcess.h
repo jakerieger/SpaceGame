@@ -3,9 +3,9 @@
 #include <CommonStates.h>
 #include <PostProcess.h>
 
-class FXAA final : public DirectX::IPostProcess {
+class FXAAPostProcess final : public DirectX::IPostProcess {
 public:
-    FXAA(ID3D11Device* device, ID3D11DeviceContext* context);
+    FXAAPostProcess(ID3D11Device* device);
     void Process(ID3D11DeviceContext* deviceContext, std::function<void()> setCustomState) override;
     void SetSourceTexture(ID3D11ShaderResourceView* source);
 

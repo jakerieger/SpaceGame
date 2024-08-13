@@ -1,6 +1,5 @@
 #include "pch.h"
-#include "FXAA.h"
-#include "DemandCreate.h"
+#include "FXAAPostProcess.h"
 
 #include <CommonStates.h>
 #include <DirectXHelpers.h>
@@ -18,7 +17,7 @@ struct ShaderBytecode {
 constexpr ShaderBytecode kVertexShader = {FXAA_VS, sizeof(FXAA_VS)};
 constexpr ShaderBytecode kPixelShader  = {FXAA_PS, sizeof(FXAA_PS)};
 
-FXAA::FXAA(ID3D11Device* device, ID3D11DeviceContext* context) {
+FXAAPostProcess::FXAAPostProcess(ID3D11Device* device) {
     DX::ThrowIfFailed(device->CreateVertexShader(kVertexShader.Code,
                                                  kVertexShader.Length,
                                                  None,
@@ -31,7 +30,8 @@ FXAA::FXAA(ID3D11Device* device, ID3D11DeviceContext* context) {
     m_States = std::make_unique<CommonStates>(device);
 }
 
-void FXAA::Process(ID3D11DeviceContext* deviceContext, std::function<void()> setCustomState) {
+void FXAAPostProcess::Process(ID3D11DeviceContext* deviceContext,
+                              std::function<void()> setCustomState) {
     deviceContext->PSSetShaderResources(0, 1, &m_Texture);
 
     const auto sampler = m_States->LinearClamp();
@@ -50,6 +50,6 @@ void FXAA::Process(ID3D11DeviceContext* deviceContext, std::function<void()> set
     deviceContext->Draw(3, 0);
 }
 
-void FXAA::SetSourceTexture(ID3D11ShaderResourceView* source) {
+void FXAAPostProcess::SetSourceTexture(ID3D11ShaderResourceView* source) {
     m_Texture = source;
 }

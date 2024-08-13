@@ -194,7 +194,8 @@
     <ClInclude Include="DemandCreate.h" />
     <ClInclude Include="DeviceResources.h" />
     <ClInclude Include="Environment.h" />
-    <ClInclude Include="FXAA.h" />
+    <ClInclude Include="AntiAliasing.h" />
+    <ClInclude Include="FXAAPostProcess.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="HUD.h" />
@@ -215,7 +216,8 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="DeviceResources.cpp" />
     <ClCompile Include="Environment.cpp" />
-    <ClCompile Include="FXAA.cpp" />
+    <ClCompile Include="AntiAliasing.cpp" />
+    <ClCompile Include="FXAAPostProcess.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="HUD.cpp" />
@@ -267,8 +269,8 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
       <VariableName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">FXAA_PS</VariableName>
       <VariableName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">FXAA_PS</VariableName>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.1</ShaderModel>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.1</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
     </FxCompile>
     <FxCompile Include="Shaders\FXAA_VS.hlsl">
       <HeaderFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)\Shaders\Compiled\%(Filename).inc</HeaderFileOutput>
@@ -281,8 +283,8 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
       <VariableName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">FXAA_VS</VariableName>
       <VariableName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">FXAA_VS</VariableName>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.1</ShaderModel>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.1</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
     </FxCompile>
     <FxCompile Include="Shaders\SkyboxEffect_PS.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>

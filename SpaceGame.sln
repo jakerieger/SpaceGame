@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Game", "Game\Game.vcxproj", "{57C3F6A7-CAFB-41B8-9A74-C3F334B02708}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AE9A01B1-6A88-4A47-8EAC-7B2BA750CB94}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{1695646E-F449-4D64-9BBC-AA2ED4ADFD66}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\GenerateRMA.py = Scripts\GenerateRMA.py
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{57C3F6A7-CAFB-41B8-9A74-C3F334B02708}.Debug|x64.ActiveCfg = Debug|x64
+		{57C3F6A7-CAFB-41B8-9A74-C3F334B02708}.Debug|x64.Build.0 = Debug|x64
+		{57C3F6A7-CAFB-41B8-9A74-C3F334B02708}.Debug|x86.ActiveCfg = Debug|Win32
+		{57C3F6A7-CAFB-41B8-9A74-C3F334B02708}.Debug|x86.Build.0 = Debug|Win32
+		{57C3F6A7-CAFB-41B8-9A74-C3F334B02708}.Release|x64.ActiveCfg = Release|x64
+		{57C3F6A7-CAFB-41B8-9A74-C3F334B02708}.Release|x64.Build.0 = Release|x64
+		{57C3F6A7-CAFB-41B8-9A74-C3F334B02708}.Release|x86.ActiveCfg = Release|Win32
+		{57C3F6A7-CAFB-41B8-9A74-C3F334B02708}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {391004EE-AC78-4E55-8D31-90C435DA8521}
+	EndGlobalSection
+EndGlobal

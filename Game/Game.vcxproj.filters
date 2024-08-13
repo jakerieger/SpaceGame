@@ -79,6 +79,12 @@
     <ClInclude Include="Bloom.h">
       <Filter>Framework</Filter>
     </ClInclude>
+    <ClInclude Include="FXAA.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="DemandCreate.h">
+      <Filter>Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -133,6 +139,9 @@
     <ClCompile Include="Bloom.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
+    <ClCompile Include="FXAA.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />
@@ -159,12 +168,27 @@
     <None Include="Shaders\Compiled\SkyboxEffect_VS.inc">
       <Filter>Shaders\Compiled</Filter>
     </None>
+    <None Include="Shaders\Structures.hlsli">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Compiled\FXAA_PS.inc">
+      <Filter>Shaders\Compiled</Filter>
+    </None>
+    <None Include="Shaders\Compiled\FXAA_VS.inc">
+      <Filter>Shaders\Compiled</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shaders\SkyboxEffect_PS.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
     <FxCompile Include="Shaders\SkyboxEffect_VS.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Shaders\FXAA_PS.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Shaders\FXAA_VS.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
   </ItemGroup>

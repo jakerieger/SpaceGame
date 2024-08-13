@@ -66,7 +66,6 @@ private:
     void Render();
 
     void ProcessTonemap(ID3D11DeviceContext* context);
-    void ProcessBloom(ID3D11DeviceContext* context);
 
     void Clear();
 

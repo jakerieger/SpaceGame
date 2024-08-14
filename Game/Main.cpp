@@ -199,7 +199,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
 
         case WM_KEYUP:
             if (game)
-                game->GetInputManager()->EmitKeyUp(wParam);
+                game->GetInputManager()->EmitKeyUp(CAST<u32>(wParam));
             break;
 
         case WM_MOUSEMOVE: {
@@ -222,7 +222,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
                                                        deltaX,
                                                        deltaY);
 
-            SetCursorPos(centerX, centerY);
+            SetCursorPos(CAST<i32>(centerX), CAST<i32>(centerY));
         }
         break;
 

@@ -312,7 +312,8 @@ void Game::CreateWindowSizeDependentResources() {
 
     m_HdrScene->SetWindow(m_DeviceResources->GetOutputSize());
     m_Bloom->SetWindow(m_DeviceResources->GetOutputSize());
-    m_AntiAliasing->SetWindow(m_DeviceResources->GetOutputSize());
+    m_AntiAliasing->SetWindow(m_DeviceResources->GetD3DDeviceContext(),
+                              m_DeviceResources->GetOutputSize());
 
     auto swapChain = m_DeviceResources->GetSwapChain();
     m_HUD          = std::make_unique<HUD>(swapChain);

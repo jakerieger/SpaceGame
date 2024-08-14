@@ -26,9 +26,9 @@ private:
     ComPtr<ID3D11ShaderResourceView> m_Texture;
     Vector<u8> m_VSBlob;
 
-    DirectX::SimpleMath::Matrix m_View;
-    DirectX::SimpleMath::Matrix m_Proj;
-    DirectX::SimpleMath::Matrix m_MVP;
+    Matrix m_View;
+    Matrix m_Proj;
+    Matrix m_MVP;
 
     u32 m_DirtyFlags;
 
@@ -36,5 +36,5 @@ private:
         DirectX::XMMATRIX WorldViewProj;
     };
 
-    DirectX::ConstantBuffer<SkyboxEffectConstants> m_ConstBuffer;
+    DirectX::ConstantBuffer<SkyboxEffectConstants> m_CBuffer;
 };

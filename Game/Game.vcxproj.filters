@@ -183,6 +183,9 @@
     <None Include="Shaders\Compiled\FXAA_VS.inc">
       <Filter>Shaders\Compiled</Filter>
     </None>
+    <None Include="Shaders\PostProcessingBuffers.hlsli">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shaders\SkyboxEffect_PS.hlsl">

@@ -16,7 +16,7 @@ namespace {
 }
 
 SkyboxEffect::SkyboxEffect(ID3D11Device* device) : m_DirtyFlags(CAST<u32>(-1)),
-                                                   m_ConstBuffer(device) {
+                                                   m_CBuffer(device) {
     static_assert((sizeof(SkyboxEffectConstants) % 16) == 0, "CB size alignment");
 
     constexpr auto vsBlobSize = std::size(SkyboxEffect_VS);
@@ -49,15 +49,13 @@ void SkyboxEffect::Apply(ID3D11DeviceContext* deviceContext) {
     if (m_DirtyFlags & kDirtyConstantBuffer) {
         SkyboxEffectConstants constants;
         constants.WorldViewProj = XMMatrixTranspose(m_MVP);
-        m_ConstBuffer.SetData(deviceContext, constants);
+        m_CBuffer.SetData(deviceContext, constants);
 
         m_DirtyFlags &= ~kDirtyConstantBuffer;
     }
 
-    const auto cb = m_ConstBuffer.GetBuffer();
+    const auto cb = m_CBuffer.GetBuffer();
     deviceContext->VSSetConstantBuffers(0, 1, &cb);
-    deviceContext->PSSetShaderResources(0, 1, m_Texture.GetAddressOf());
-
     deviceContext->PSSetShaderResources(0, 1, m_Texture.GetAddressOf());
     deviceContext->VSSetShader(m_VS.Get(), nullptr, 0);
     deviceContext->PSSetShader(m_PS.Get(), nullptr, 0);

@@ -254,6 +254,7 @@
     <None Include="Shaders\Compiled\FXAA_VS.inc" />
     <None Include="Shaders\Compiled\SkyboxEffect_PS.inc" />
     <None Include="Shaders\Compiled\SkyboxEffect_VS.inc" />
+    <None Include="Shaders\PostProcessingBuffers.hlsli" />
     <None Include="Shaders\Structures.hlsli" />
     <None Include="Shaders\SkyboxEffect_Common.hlsli" />
   </ItemGroup>

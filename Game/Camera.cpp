@@ -26,10 +26,11 @@ void Camera::Update(const f32 dT) {
         const auto desiredY = targetPos.y + m_FollowOffset.y;
         const auto desiredZ = targetPos.z + m_FollowOffset.z;
 
-        constexpr f32 smoothingFactor = 2.f;
-        m_Position.x += (desiredX - m_Position.x) * smoothingFactor * dT;
-        m_Position.y += (desiredY - m_Position.y) * smoothingFactor * dT;
-        m_Position.z += (desiredZ - m_Position.z) * smoothingFactor * dT;
+        constexpr f32 smoothingFactor = 6.f;
+        const f32 factor              = 1.0f - std::exp(-smoothingFactor * dT);
+        m_Position.x += (desiredX - m_Position.x) * factor;
+        m_Position.y += (desiredY - m_Position.y) * factor;
+        m_Position.z += (desiredZ - m_Position.z) * factor;
 
         // this moves the target towards the bottom of the screen instead
         // of in the center

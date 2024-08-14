@@ -66,6 +66,9 @@ private:
     void Update(DX::StepTimer const& timer);
     void Render();
 
+    void ScenePass(ID3D11DeviceContext* context);
+    void PostProcessPass(ID3D11DeviceContext* context);
+
     void ProcessTonemap(ID3D11DeviceContext* context);
 
     void Clear();

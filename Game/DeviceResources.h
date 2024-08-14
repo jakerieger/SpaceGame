@@ -22,11 +22,11 @@ namespace DX {
         static constexpr unsigned int kAllowTearing = 0x2;
         static constexpr unsigned int kEnableHDR    = 0x4;
 
-        DeviceResources(DXGI_FORMAT backBufferFormat      = DXGI_FORMAT_B8G8R8A8_UNORM,
-                        DXGI_FORMAT depthBufferFormat     = DXGI_FORMAT_D32_FLOAT,
-                        UINT backBufferCount              = 2,
-                        D3D_FEATURE_LEVEL minFeatureLevel = D3D_FEATURE_LEVEL_10_0,
-                        unsigned int flags                = kFlipPresent | kAllowTearing) noexcept;
+        explicit DeviceResources(DXGI_FORMAT backBufferFormat      = DXGI_FORMAT_B8G8R8A8_UNORM,
+                                 DXGI_FORMAT depthBufferFormat     = DXGI_FORMAT_D32_FLOAT,
+                                 UINT backBufferCount              = 2,
+                                 D3D_FEATURE_LEVEL minFeatureLevel = D3D_FEATURE_LEVEL_10_0,
+                                 unsigned int flags                = kFlipPresent) noexcept;
         ~DeviceResources() = default;
 
         DeviceResources(DeviceResources&&)            = default;

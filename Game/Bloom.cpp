@@ -19,7 +19,7 @@ Bloom::Bloom(const DXGI_FORMAT format, ID3D11Device* device)
     m_PassFour->SetDevice(device);
 }
 
-void Bloom::Process(ID3D11DeviceContext* context, const DX::RenderTexture* sceneIn) {
+void Bloom::Process(ID3D11DeviceContext* context, ID3D11ShaderResourceView* sceneIn) {
     auto passOne   = m_PassOne->GetRenderTargetView();
     auto passTwo   = m_PassTwo->GetRenderTargetView();
     auto passThree = m_PassThree->GetRenderTargetView();
@@ -30,7 +30,7 @@ void Bloom::Process(ID3D11DeviceContext* context, const DX::RenderTexture* scene
         m_Basic->SetEffect(BasicPostProcess::BloomExtract);
         m_Basic->SetBloomExtractParameter(0.4f);
         context->OMSetRenderTargets(1, &passOne, None);
-        m_Basic->SetSourceTexture(sceneIn->GetShaderResourceView());
+        m_Basic->SetSourceTexture(sceneIn);
         m_Basic->Process(context);
     }
 
@@ -56,9 +56,9 @@ void Bloom::Process(ID3D11DeviceContext* context, const DX::RenderTexture* scene
     // Final pass
     {
         m_Dual->SetEffect(DualPostProcess::BloomCombine);
-        m_Dual->SetBloomCombineParameters(1.5f, 1.f, 1.f, 1.f);
+        m_Dual->SetBloomCombineParameters(1.25f, 1.f, 1.f, 1.f);
         context->OMSetRenderTargets(1, &passFour, None);
-        m_Dual->SetSourceTexture(sceneIn->GetShaderResourceView());
+        m_Dual->SetSourceTexture(sceneIn);
         m_Dual->SetSourceTexture2(m_PassThree->GetShaderResourceView());
         m_Dual->Process(context);
     }

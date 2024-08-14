@@ -30,7 +30,10 @@ Game::Game() noexcept(false) {
         /*DXGI_FORMAT_R10G10B10A2_UNORM*/ DXGI_FORMAT_B8G8R8A8_UNORM,
                                           DXGI_FORMAT_D32_FLOAT,
                                           2,
-                                          D3D_FEATURE_LEVEL_10_0);
+                                          D3D_FEATURE_LEVEL_10_0,
+                                          DX::DeviceResources::kFlipPresent |
+                                          DX::DeviceResources::kAllowTearing |
+                                          DX::DeviceResources::kEnableHDR);
     m_DeviceResources->RegisterDeviceNotify(this);
 
     m_HdrScene = std::make_unique<DX::RenderTexture>(DXGI_FORMAT_R16G16B16A16_FLOAT);
@@ -110,35 +113,13 @@ void Game::Render() {
     {
         const auto context = m_DeviceResources->GetD3DDeviceContext();
 
-        for (const auto& go : m_GameObjects) {
-            auto [View, Projection] = m_MainCamera->GetMatrices();
-            go->Draw(context, View, Projection);
-        }
-
-        m_DeviceResources->PIXBeginEvent(L"Bloom");
-        {
-            m_Bloom->Process(context, m_HdrScene.get());
-        }
-        m_DeviceResources->PIXEndEvent();
-
-        m_DeviceResources->PIXBeginEvent(L"AntiAliasing(FXAA)");
-        {
-            m_AntiAliasing->Process(context, m_Bloom->GetProcessedScene());
-        }
-        m_DeviceResources->PIXEndEvent();
-
-        m_DeviceResources->PIXBeginEvent(L"Tonemap");
-        {
-            // TODO: Convert this to a class like Bloom
-            ProcessTonemap(context);
-        }
-        m_DeviceResources->PIXEndEvent();
-
-        ID3D11ShaderResourceView* nullsrv[] = {None};
-        context->PSSetShaderResources(0, 1, nullsrv);
+        ScenePass(context);
+        PostProcessPass(context);
 
         // Force D3D commands to finish before switching to D2D
-        m_DeviceResources->GetD3DDeviceContext()->Flush();
+        // Disabling improves framerate by about 20% ?
+        // Feel like this was unnecessary.
+        //m_DeviceResources->GetD3DDeviceContext()->Flush();
     }
     m_DeviceResources->PIXEndEvent();
 
@@ -150,6 +131,37 @@ void Game::Render() {
 
     // Show the new frame.
     m_DeviceResources->Present();
+}
+
+void Game::ScenePass(ID3D11DeviceContext* context) {
+    for (const auto& go : m_GameObjects) {
+        auto [View, Projection] = m_MainCamera->GetMatrices();
+        go->Draw(context, View, Projection);
+    }
+}
+
+void Game::PostProcessPass(ID3D11DeviceContext* context) {
+    m_DeviceResources->PIXBeginEvent(L"AntiAliasing(FXAA)");
+    {
+        m_AntiAliasing->Process(context, m_HdrScene->GetShaderResourceView());
+    }
+    m_DeviceResources->PIXEndEvent();
+
+    // m_DeviceResources->PIXBeginEvent(L"Bloom");
+    //{
+    //     m_Bloom->Process(context, m_AntiAliasing->GetProcessedScene());
+    // }
+    // m_DeviceResources->PIXEndEvent();
+
+    m_DeviceResources->PIXBeginEvent(L"Tonemap");
+    {
+        // TODO: Convert this to a class like Bloom
+        ProcessTonemap(context);
+    }
+    m_DeviceResources->PIXEndEvent();
+
+    ID3D11ShaderResourceView* nullsrv[] = {None};
+    context->PSSetShaderResources(0, 1, nullsrv);
 }
 
 void Game::ProcessTonemap(ID3D11DeviceContext* context) {

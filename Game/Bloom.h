@@ -8,7 +8,7 @@ class Bloom {
 public:
     Bloom(DXGI_FORMAT format, ID3D11Device* device);
 
-    void Process(ID3D11DeviceContext* context, const DX::RenderTexture* sceneIn);
+    void Process(ID3D11DeviceContext* context, ID3D11ShaderResourceView* sceneIn);
 
     void SetWindow(const RECT& rect) {
         m_PassOne->SetWindow(rect);

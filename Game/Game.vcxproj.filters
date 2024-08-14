@@ -88,6 +88,12 @@
     <ClInclude Include="AntiAliasing.h">
       <Filter>Framework</Filter>
     </ClInclude>
+    <ClInclude Include="CustomPBREffectFactory.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomPBREffect.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -148,6 +154,12 @@
     <ClCompile Include="AntiAliasing.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
+    <ClCompile Include="CustomPBREffectFactory.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="CustomPBREffect.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />
@@ -186,6 +198,9 @@
     <None Include="Shaders\PostProcessingBuffers.hlsli">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="Shaders\PBRBuffers.hlsli">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shaders\SkyboxEffect_PS.hlsl">
@@ -198,6 +213,12 @@
       <Filter>Shaders</Filter>
     </FxCompile>
     <FxCompile Include="Shaders\FXAA_VS.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Shaders\PBR_PS.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Shaders\PBR_VS.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
   </ItemGroup>

@@ -3,6 +3,7 @@
 #include "GameObject.h"
 #include "Input.h"
 #include "Environment.h"
+#include "CustomPBREffectFactory.h"
 
 #include <Model.h>
 #include <Effects.h>
@@ -26,7 +27,7 @@ public:
     void OnMouseMove(const MouseMoveEvent& event) override;
 
 private:
-    Unique<DirectX::PBREffectFactory> m_FxFactory;
+    Unique<CustomPBREffectFactory> m_FxFactory;
     Unique<DirectX::Model> m_Model;
     Unique<DirectX::CommonStates> m_States;
 

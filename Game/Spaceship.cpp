@@ -3,13 +3,16 @@
 
 #include <WICTextureLoader.h>
 
+#include "CustomPBREffect.h"
+#include "CustomPBREffectFactory.h"
+
 using namespace DirectX;
 using DX::ThrowIfFailed;
 
 static constexpr f32 kSpeed = 5.f;
 
 Spaceship::Spaceship(ID3D11Device* device) {
-    m_FxFactory = std::make_unique<PBREffectFactory>(device);
+    m_FxFactory = std::make_unique<CustomPBREffectFactory>(device);
 
     m_Model  = Model::CreateFromSDKMESH(device, L"Assets/Models/StarShip.SDKMESH", *m_FxFactory);
     m_States = std::make_unique<CommonStates>(device);
@@ -53,15 +56,21 @@ void Spaceship::Draw(ID3D11DeviceContext* context,
 void Spaceship::SetIBLTextures(
     Environment* environment) {
     m_Model->UpdateEffects([&](IEffect* effect) {
-        const auto pbrEffect = DCAST<PBREffect*>(effect);
-        if (pbrEffect) {
-            pbrEffect->SetIBLTextures(environment->GetRadiance().Get(),
-                                      environment->GetMipLevels(),
-                                      environment->GetIrradiance().Get());
-            pbrEffect->SetSurfaceTextures(m_Albedo.Get(),
-                                          m_Normal.Get(),
-                                          m_RoughnessMetallic.Get());
-            pbrEffect->SetEmissiveTexture(m_Emissive.Get());
+        //const auto pbrEffect = DCAST<PBREffect*>(effect);
+        //if (pbrEffect) {
+        //    pbrEffect->SetIBLTextures(environment->GetRadiance().Get(),
+        //                              environment->GetMipLevels(),
+        //                              environment->GetIrradiance().Get());
+        //    pbrEffect->SetSurfaceTextures(m_Albedo.Get(),
+        //                                  m_Normal.Get(),
+        //                                  m_RoughnessMetallic.Get());
+        //    pbrEffect->SetEmissiveTexture(m_Emissive.Get());
+        //}
+
+        const auto pbrEffect = DCAST<CustomPBREffect*>(effect);
+
+        if (!pbrEffect) {
+            return;
         }
     });
 }

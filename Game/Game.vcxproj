@@ -191,6 +191,8 @@
   <ItemGroup>
     <ClInclude Include="Bloom.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CustomPBREffect.h" />
+    <ClInclude Include="CustomPBREffectFactory.h" />
     <ClInclude Include="DemandCreate.h" />
     <ClInclude Include="DeviceResources.h" />
     <ClInclude Include="Environment.h" />
@@ -214,6 +216,8 @@
   <ItemGroup>
     <ClCompile Include="Bloom.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CustomPBREffect.cpp" />
+    <ClCompile Include="CustomPBREffectFactory.cpp" />
     <ClCompile Include="DeviceResources.cpp" />
     <ClCompile Include="Environment.cpp" />
     <ClCompile Include="AntiAliasing.cpp" />
@@ -254,6 +258,7 @@
     <None Include="Shaders\Compiled\FXAA_VS.inc" />
     <None Include="Shaders\Compiled\SkyboxEffect_PS.inc" />
     <None Include="Shaders\Compiled\SkyboxEffect_VS.inc" />
+    <None Include="Shaders\PBRBuffers.hlsli" />
     <None Include="Shaders\PostProcessingBuffers.hlsli" />
     <None Include="Shaders\Structures.hlsli" />
     <None Include="Shaders\SkyboxEffect_Common.hlsli" />
@@ -286,6 +291,34 @@
       <VariableName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">FXAA_VS</VariableName>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="Shaders\PBR_PS.hlsl">
+      <HeaderFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)\Shaders\Compiled\%(Filename).inc</HeaderFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </ObjectFileOutput>
+      <HeaderFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)\Shaders\Compiled\%(Filename).inc</HeaderFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </ObjectFileOutput>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <VariableName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">PBR_PS</VariableName>
+      <VariableName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PBR_PS</VariableName>
+    </FxCompile>
+    <FxCompile Include="Shaders\PBR_VS.hlsl">
+      <HeaderFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)\Shaders\Compiled\%(Filename).inc</HeaderFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </ObjectFileOutput>
+      <HeaderFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)\Shaders\Compiled\%(Filename).inc</HeaderFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </ObjectFileOutput>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <VariableName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">PBS_VS</VariableName>
+      <VariableName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PBS_VS</VariableName>
     </FxCompile>
     <FxCompile Include="Shaders\SkyboxEffect_PS.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
